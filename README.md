@@ -1,14 +1,16 @@
-# Program Design Assignment
+# DCP5101 Program Design - Assignment
 
 Multimedia University
 
 Trimester 2310 - 2023/2024
 
-## Team Members
-@MultiDulcetia
+## Assignment Topic: Tic-Tac-Toe
 
-@KahHeng0401
+### Group Members
+[@MultiDulcetia](https://github.com/MultiDulcetia)
 
-@riceo180
+[@KahHeng0401](https://github.com/KahHeng0401)
 
-@ygjiaa
+[@riceo180](https://github.com/riceo180)
+
+[@ygjiaa](https://github.com/ygjiaa)
