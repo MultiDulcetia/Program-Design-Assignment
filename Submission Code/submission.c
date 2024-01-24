@@ -28,9 +28,18 @@ You have to apply at least 5 elements in your program. Elements that you can app
 
 // Defining the size of the board which is 9x9
 #define SIZE 9
+
 // Creating an array to hold the board
 // Completed 1/5 elements (Array) from the requirements
 char board[SIZE][SIZE];
+
+
+// creating variable to hold the winner and set it to 0
+int winner = 0;
+
+// using array to hold the player names
+char Player1[20];
+char Player2[20];
 
 // Function prototypes
 void resetBoard();
@@ -61,6 +70,36 @@ void printBoard()
 
 }
 
+void checkWin()
+{
+
+}
+void checkFreeSpace()
+{
+
+}
+void printWinner()
+{
+    if (winner == 1)
+    {
+        printf("Congratulations! %s has won!\n",Player2);
+    }else if (winner == 2)
+    {
+        printf("Congratulations! %s has won!\n",Player2);
+    }else
+    {
+        printf("Aww, unfortunately it's a draw!\n");
+        printf("Nice try,%s and %s!\n",Player1,Player2);
+    }
+    
+    
+    
+}
+void saveWinner()
+{
+
+}
+
 int main()
 {
 
@@ -69,83 +108,91 @@ int main()
 
     // Main Menu
     printf("\nWelcome to 9x9 Tic-Tac-Toe Minigame!\n");
-    printf("Created by: @kahheng0401\n");
+    printf("Created by: @KahHeng0401\n");
     printf("            @MultiDulcetia\n");
     printf("            @riceo180\n");
     printf("            @ygjiaa\n");
 
-    // Main Menu Select
-    printf("\nPlease select an option:\n");
-    printf("1. Start Game\n");
-    printf("2. View Leaderboard\n");
-    printf("3. Exit\n");
-    printf("Enter your choice: ");
-
-    // Scanning for user input
-    // Completed 2/5 elements (Selection) from the requirements
-    scanf("%d", &main_menu_choice);
-
-    // Using if loop to do what the user selected
-    if (main_menu_choice == 1)
-    {
-        printf("Starting game...\n");
-        resetBoard;
-        printBoard;
-
-    }
-    else if (main_menu_choice == 2)
-    {
-        
-        // Variables
-        // Creating a pointer
-        FILE *file;
-        // Creating a string to hold the leaderboard
-        char leaderboard_string[10000];
-
-        printf("\nViewing leaderboard...\n");
-        file = fopen("leaderboard.txt", "r");
-        
-        // if file does not exist, print error and exit program
-        if (file == NULL)
+    // do loop to keep looping until user chooses to exit
+    do
         {
-            printf("Error opening file!\n");
+        // Main Menu Select
+        printf("\nPlease select an option:\n");
+        printf("1. Start Game\n");
+        printf("2. View Leaderboard\n");
+        printf("3. Exit\n");
+        printf("Enter your choice: ");
+
+        // Scanning for user input
+        // Completed 2/5 elements (Selection) from the requirements
+        scanf("%d", &main_menu_choice);
+
+        // Using if loop to do what the user selected
+        if (main_menu_choice == 1)
+        {
+            printf("Starting game...\n");
+            resetBoard;
+            printBoard;
+
+        }
+        else if (main_menu_choice == 2)
+        {
+            
+            // Variables
+            // Creating a pointer
+            FILE *file;
+            // Creating a string to hold the leaderboard
+            char leaderboard_string[10000];
+
+            printf("\nViewing leaderboard...\n");
+            file = fopen("leaderboard.txt", "r");
+            
+            // if file does not exist, print error and exit program
+            if (file == NULL)
+            {
+                printf("Error opening file!\n");
+                printf("Exiting in 5 seconds...\n\n");
+                Sleep(5000);
+                exit(1);
+
+
+            }else 
+            
+            
+            
+            printf("\n------------------------------------");
+            printf("\n        Start of Leaderboard        ");
+            printf("\n------------------------------------\n");
+            do // do loop to keep printing until end of file 
+            {
+                fgets(leaderboard_string, 10000, file);
+                printf("%s", leaderboard_string);
+            } while (!feof(file)); // feof = file end of file
+            printf("\n------------------------------------");
+            printf("\n         End of Leaderboard         ");
+            printf("\n------------------------------------\n");
+            
+            // fgets(leaderboard_string, 10000, file);
+            // printf("%s\n", leaderboard_string);
+            
+
+
+
+            fclose(file); // close file to prevent memory leak
+        }
+        else if (main_menu_choice == 3)
+        {
+            printf("\nThank you for playing!\n");
             printf("Exiting in 5 seconds...\n");
-            Sleep(5000);
-            exit(1);
-
-
-        }else 
-        
-        printf("\n------------------------------------");
-        printf("\n        Start of Leaderboard        ");
-        printf("\n------------------------------------\n");
-        do // do loop to keep printing until end of file
+            break; // break from do loop to prevent it from looping again
+        }
+        else
         {
-            fgets(leaderboard_string, 10000, file);
-            printf("%s", leaderboard_string);
-        } while (!feof(file)); // feof = file end of file
-        printf("\n------------------------------------");
-        printf("\n         End of Leaderboard         ");
-        printf("\n------------------------------------");
-        
-        
-        // fgets(leaderboard_string, 10000, file);
-        // printf("%s\n", leaderboard_string);
-        
-
-
-
-        fclose(file); // close file to prevent memory leak
-    }
-    else if (main_menu_choice == 3)
-    {
-        printf("\nThank you for playing!\n");
-        printf("Exiting in 5 seconds...\n");
-    }
-    else
-    {
-        printf("Invalid input! Please try again.\n");
-    }
+            printf("\nInvalid input! Please try again.\n");
+        }
+    } while (1);
+    
+    
     
     
 
