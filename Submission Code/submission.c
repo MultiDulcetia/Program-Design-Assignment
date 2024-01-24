@@ -21,6 +21,7 @@ You have to apply at least 5 elements in your program. Elements that you can app
 
 //Preprocessor directives
 #include <stdio.h>
+#include <stdlib.h>
 // Using windows.h so that we can use the sleep() function to autoclose after 5 sec and not have the cmd auto close
 #include <windows.h>
 
@@ -93,7 +94,33 @@ int main()
     }
     else if (main_menu_choice == 2)
     {
-        /* code */
+        
+        // Variables
+        // Creating a pointer
+        FILE *file;
+        // Creating a string to hold the leaderboard
+        char leaderboard_string[10000];
+
+        printf("\nViewing leaderboard...\n");
+        file = fopen("leaderboard.txt", "r");
+        if (file == NULL)
+        {
+            printf("Error opening file!\n");
+            printf("Exiting in 5 seconds...\n\n");
+            Sleep(5000);
+            exit(1);
+
+
+        }else
+        
+        fgets(leaderboard_string, 10000, file);
+        printf("%s\n", leaderboard_string);
+        
+
+
+
+
+        fclose(file);
     }
     else if (main_menu_choice == 3)
     {
@@ -114,7 +141,7 @@ int main()
 
 
 
-
+    // pause for 5 sec before closing
     Sleep(5000);
     return 0;
 }
