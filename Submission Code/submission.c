@@ -68,10 +68,10 @@ int main()
 
     // Main Menu
     printf("\nWelcome to 9x9 Tic-Tac-Toe Minigame!\n");
-    printf("Created by: Teo Kah Heng\n");
-    printf("            Teow Dickson\n");
-    printf("            Liew Hui Xuan\n");
-    printf("            Loh Yong Jia\n");
+    printf("Created by: @kahheng0401\n");
+    printf("            @MultiDulcetia\n");
+    printf("            @riceo180\n");
+    printf("            @ygjiaa\n");
 
     // Main Menu Select
     printf("\nPlease select an option:\n");
@@ -102,7 +102,9 @@ int main()
         char leaderboard_string[10000];
 
         printf("\nViewing leaderboard...\n");
+        // opening file "leaderboard.txt"
         file = fopen("leaderboard.txt", "r");
+        // if file doesn't exist, print error msg and quit
         if (file == NULL)
         {
             printf("Error opening file!\n");
@@ -111,16 +113,14 @@ int main()
             exit(1);
 
 
-        }else
-        
+        }else // else print leaderboard
+        {
         fgets(leaderboard_string, 10000, file);
         printf("%s\n", leaderboard_string);
-        
-
-
-
-
+    
         fclose(file);
+        }
+
     }
     else if (main_menu_choice == 3)
     {
@@ -132,15 +132,6 @@ int main()
         printf("Invalid input! Please try again.\n");
     }
     
-    
-
-
-
-
-
-
-
-
     // pause for 5 sec before closing
     Sleep(5000);
     return 0;
