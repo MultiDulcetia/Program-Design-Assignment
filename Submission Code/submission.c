@@ -437,7 +437,7 @@ int main()
                     } while (!feof(file)); // feof = file end of file
                 printf("\n------------------------------------");
                 printf("\n         End of Leaderboard         ");
-                printf("\n------------------------------------\n");
+                printf("\n------------------------------------\n\n");
 
                     }
 
