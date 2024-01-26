@@ -33,24 +33,52 @@ You have to apply at least 5 elements in your program. Elements that you can app
 // Completed 1/5 elements (Array) from the requirements
 char board[3][3];
 
+// creating a struct to hold playername and symbol
+
+struct Player{
+    char name[50];
+    char symbol;
+};
+
+struct Player Player1, Player2;
+
+// Player1.symbol = 'x';
+// Player2.symbol = 'o';
+
+// struct Player1{
+//     char name[20];
+//     char symbol;
+// };
+
+// struct Player2{
+//     char name[20];
+//     char symbol;
+// };
+
+
+
+
+
+
 // creating a constant to hold p1 and p2 symbol
-const char Player1Symbol = 'x';
-const char Player2Symbol = 'o';
+// const char Player1Symbol = 'x';
+// const char Player2Symbol = 'o';
 
 
 // creating variable to hold the winner and set it to 0
 int winner = 0;
 
 // using array to hold the player names
-char Player1[20];
-char Player2[20];
+// char Player1[20];
+// char Player2[20];
 
 // Function prototypes
 void resetBoard();
 void printBoard();
 char checkWin();
 int checkFreeSpace();
-void playerMove();
+void player1Move();
+void player2Move();
 void printWinner();
 void saveWinner();
 
@@ -82,15 +110,18 @@ void printBoard()
 
 char checkWin()
 {
+
+    // struct Player Player1, Player2; //replaced with global variables
+
     //check rows
     for(int i = 0; i < 3; i++)
     {
         if(board[i][0] == board[i][1] && board[i][1] == board[i][2])
         {
-            if(board[i][0] == Player1Symbol)
+            if(board[i][0] == Player1.symbol)
             {
                 winner = 1;
-            }else if(board[i][0] == Player2Symbol)
+            }else if(board[i][0] == Player2.symbol)
             {
                 winner = 2;
             }
@@ -101,10 +132,10 @@ char checkWin()
     {
         if(board[0][i] == board[1][i] && board[1][i] == board[2][i])
         {
-            if(board[0][i] == Player1Symbol)
+            if(board[0][i] == Player1.symbol)
             {
                 winner = 1;
-            }else if(board[0][i] == Player2Symbol)
+            }else if(board[0][i] == Player2.symbol)
             {
                 winner = 2;
             }
@@ -113,10 +144,10 @@ char checkWin()
     //check diagonals
     if(board[0][0] == board[1][1] && board[1][1] == board[2][2])
     {
-        if(board[0][0] == Player1Symbol)
+        if(board[0][0] == Player1.symbol)
         {
             winner = 1;
-        }else if(board[0][0] == Player2Symbol)
+        }else if(board[0][0] == Player2.symbol)
         {
             winner = 2;
         }
@@ -124,9 +155,9 @@ char checkWin()
     return ' ';
 }
 
-int checkFreeSpace()
+int checkFreeSpace(int* freeSpace)
 {
-    int freeSpace = 9;
+    *freeSpace = 9;
 
     for(int i = 0; i < 3; i++)
     {
@@ -134,22 +165,30 @@ int checkFreeSpace()
         {
             if(board[i][j] != ' ')
             {
-                freeSpace--;
+                (*freeSpace)--;
             }
         }
         
     }
-    return freeSpace;
+
+    if (freeSpace == 0)
+    {
+        winner = 3;
+    }
+    
+
+    return *freeSpace;
 }
-void printWinner()
+
+void printWinner(int freeSpace)
 {
     if (winner == 1)
     {
-        printf("Congratulations! %s has won!\n",Player2);
+        printf("Congratulations! %s has won!\n",Player1.name);
     }else if (winner == 2)
     {
-        printf("Congratulations! %s has won!\n",Player2);
-    }else
+        printf("Congratulations! %s has won!\n",Player2.name);
+    }else if (winner == 3)
     {
         printf("Aww, unfortunately it's a draw!\n");
         printf("Nice try,%s and %s!\n",Player1,Player2);
@@ -166,10 +205,10 @@ void saveWinner()
 
     if (winner == 1)
     {
-        fprintf(FILE,"%s\n",Player1);
+        fprintf(FILE,"%s\n",Player1.name);
     }else if (winner == 2)
     {
-        fprintf(FILE,"%s\n",Player1);
+        fprintf(FILE,"%s\n",Player1.name);
     }else{
         
     }
@@ -180,8 +219,37 @@ void saveWinner()
 
 
 
-void playerMove()
+void player1Move()
 {
+    int x;
+    int y;
+
+    Player1.symbol = 'x';
+
+    printf("\nEnter row #(1-3): ");
+    scanf("%d", &x);
+    x--;
+    printf("Enter column #(1-3): ");
+    scanf("%d", &y);
+    y--;
+
+    if(board[x][y] != ' ')
+    {
+        printf("\nInvalid move, please try again.\n");
+        player1Move();
+    }else
+    {
+        board[x][y] = Player1.symbol;
+
+    }
+    
+}
+
+void player2Move()
+{
+
+    Player2.symbol = 'o';
+
     int x;
     int y;
 
@@ -195,10 +263,11 @@ void playerMove()
     if(board[x][y] != ' ')
     {
         printf("\nInvalid move, please try again.\n");
-        playerMove();
+        player2Move();
     }else
     {
-        board[x][y] = Player1Symbol;
+        board[x][y] = Player2.symbol;
+
     }
     
 }
@@ -208,6 +277,7 @@ int main()
 
     // Variables
     int main_menu_choice;
+    int freeSpace;
 
     // Main Menu
     printf("\nWelcome to 3x3 Tic-Tac-Toe Minigame!\n");
@@ -238,11 +308,11 @@ int main()
 
             printf("Enter Player 1's name: ");
             fflush(stdin); // flushing the input buffer
-            scanf("%s", Player1);
+            scanf("%s", Player1.name);
 
             printf("Enter Player 2's name: ");
             fflush(stdin); // flushing the input buffer
-            scanf("%s", Player2);
+            scanf("%s", Player2.name);
 
             // resetting board
             resetBoard();
@@ -251,31 +321,43 @@ int main()
             printBoard();
 
             // do loop to keep playing until there is a winner or a draw
-            do
-            {
-                //Player 1's turn
-                printf("It's %s's turn", Player1);
-                playerMove();
-                printBoard();
-                checkWin();
-                if (winner != 0)
+                do
                 {
-                    break;
-                }
+                    //Player 1's turn
+                    printf("It's %s's turn", Player1.name);
+                    player1Move();
+                    printBoard();
+                    // freeSpace = checkFreeSpace(&freeSpace);
+                    checkWin();
+                    if (winner != 0)
+                    {
+                        break;
+                    }
 
-                //Player 2's turn
-                printf("It's %s's turn", Player2);
-                playerMove();
-                printBoard();
-                checkWin();
-                if (winner != 0)
-                {
-                    break;
-                }
-            } while (checkFreeSpace() != 0 || checkWin() != 0);
-            
+                    //Player 2's turn
+                    printf("It's %s's turn", Player2.name);
+                    player2Move();
+                    printBoard();
+                    // freeSpace = checkFreeSpace(&freeSpace);
+                    checkWin();
+                    if (winner != 0)
+                    {
+                        break;
+                    }
+                } while (freeSpace != 0 || checkWin() != 0 || winner != 0);
 
-        
+            // printing winner
+            printWinner(winner);
+
+            // saving winner to leaderboard
+            printf("\nSaving winner to leaderboard...\n");
+            saveWinner();
+
+            // resetting winner
+            winner = 0;
+
+            // resetting board
+            resetBoard();
 
         }
         else if (main_menu_choice == 2)
@@ -330,7 +412,7 @@ int main()
         else if (main_menu_choice == 3)
         {
             printf("\nThank you for playing!\n");
-            printf("Exiting in 5 seconds...\n");
+            printf("Exiting in 2 seconds...\n");
             break; // break from do loop to prevent it from looping again
         }
         else
@@ -346,9 +428,12 @@ int main()
 
 
 
+
+
+
+
+
     // pause for 5 sec before closing
-    Sleep(5000);
+    Sleep(2000);
     return 0;
 }
-
-
