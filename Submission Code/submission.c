@@ -23,8 +23,10 @@ You have to apply at least 5 elements in your program. Elements that you can app
 #include <stdio.h>
 // Using <stdlib.h> so that we can use the exit() function to exit the program
 #include <stdlib.h>
-// Using windows.h so that we can use the sleep() function to autoclose after 5 sec and not have the command prompt auto close
+// Using windows.h so that we can use the sleep() function to autoclose after 3 sec and not have the command prompt auto close
 #include <windows.h>
+// including conio.h so that we can use getch() function and clrscr() function
+#include <conio.h>
 
 // Defining the size of the board which is 3x3
 #define SIZE 3
@@ -379,7 +381,13 @@ int main()
             }
             
             printf("Thanks for playing!\n");
-            printf("Returning to main menu...\n\n");
+            printf("Returning to main menu in 3 seconds...\n");
+            Sleep(1000);
+            printf("Returning to main menu in 2 seconds...\n");
+            Sleep(1000);
+            printf("Returning to main menu in 1 seconds...\n\n");
+            Sleep(1000);
+
 
             // resetting winner
             winner = 0;
@@ -475,5 +483,3 @@ int main()
     // Sleep(3000);
     return 0;
 }
-
-
