@@ -354,6 +354,8 @@ int main()
                         break;
                     }
 
+
+
                     //Player 2's turn
                     printf("It's %s's turn", Player2.name);
                     player2Move();
@@ -383,10 +385,13 @@ int main()
             printf("Thanks for playing!\n");
             printf("Returning to main menu in 3 seconds...\n");
             Sleep(1000);
+            system("cls"); // clearing terminal to make it look dynamic
             printf("Returning to main menu in 2 seconds...\n");
             Sleep(1000);
+            system("cls"); // clearing terminal to make it look dynamic
             printf("Returning to main menu in 1 seconds...\n\n");
             Sleep(1000);
+            system("cls"); // clearing terminal to make it look dynamic
 
 
             // resetting winner
@@ -398,12 +403,16 @@ int main()
         }
         else if (main_menu_choice == 2)
         {
+
+            
             
             // Variables
             // Creating a pointer
             FILE *file;
             // Creating a string to hold the leaderboard
             char leaderboard_string[10000];
+
+            system("cls"); // clearing terminal to prevent clutter
 
             printf("\nViewing leaderboard...\n");
             file = fopen("leaderboard.txt", "r");
@@ -453,10 +462,13 @@ int main()
             printf("Thank you for playing!\n");
             printf("Exiting in 3 seconds...\n");
             Sleep(1000);
+            system("cls"); // clearing terminal to make it look dynamic
             printf("Exiting in 2 seconds...\n");
             Sleep(1000);
+            system("cls"); // clearing terminal to make it look dynamic
             printf("Exiting in 1 seconds...\n");
             Sleep(1000);
+            system("cls"); // clearing terminal to make it look dynamic
             
             
             break; // break from do loop to prevent it from looping again
@@ -483,3 +495,5 @@ int main()
     // Sleep(3000);
     return 0;
 }
+
+
