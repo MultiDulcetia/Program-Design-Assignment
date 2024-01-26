@@ -354,8 +354,6 @@ int main()
                         break;
                     }
 
-
-
                     //Player 2's turn
                     printf("It's %s's turn", Player2.name);
                     player2Move();
@@ -421,30 +419,28 @@ int main()
             if (file == NULL)
             {
                 printf("\nWarning: Error opening file!\n");
-                printf("File does not exist or is corrupted.\n");
+                printf("File does not exist or is corrupted.\n\n");
 
-                printf("\nReturning to main menu...\n\n");
-                break; // break from do loop
+                // system("pause"); // pausing the program until player enters a key
+                
                 
 
 
-            }else 
-            
-            
-            
-            printf("\n------------------------------------");
-            printf("\n        Start of Leaderboard        ");
-            printf("\n------------------------------------\n");
-            do // do loop to keep printing until end of file 
-            {
-                fgets(leaderboard_string, 10000, file);
-                printf("%s", leaderboard_string);
-            } while (!feof(file)); // feof = file end of file
-            printf("\n------------------------------------");
-            printf("\n         End of Leaderboard         ");
-            printf("\n------------------------------------\n");
+            }else {
+                printf("\n------------------------------------");
+                printf("\n        Start of Leaderboard        ");
+                printf("\n------------------------------------\n");
+                 do // do loop to keep printing until end of file 
+                    {
+                        fgets(leaderboard_string, 10000, file);
+                        printf("%s", leaderboard_string);
+                    } while (!feof(file)); // feof = file end of file
+                printf("\n------------------------------------");
+                printf("\n         End of Leaderboard         ");
+                printf("\n------------------------------------\n");
 
-                        
+                    }
+
             // fgets(leaderboard_string, 10000, file);
             // printf("%s\n", leaderboard_string);
             
