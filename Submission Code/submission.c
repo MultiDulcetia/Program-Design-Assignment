@@ -11,12 +11,12 @@ Group Members: 1. @MultiDulcetia
 /*
 Requirements:
 You have to apply at least 5 elements in your program. Elements that you can apply are:
-    1. Control Structure (Selection & Repetition)
+    1. Control Structure (Selection & Repetition) - done
     2. Functions
-    3. Array
-    4. Pointers
-    5. Structures
-    6. File
+    3. Array - done
+    4. Pointers - done
+    5. Structures - done
+    6. File - done
 */
 
 //Preprocessor directives
@@ -34,12 +34,14 @@ You have to apply at least 5 elements in your program. Elements that you can app
 char board[3][3];
 
 // creating a struct to hold playername and symbol
+// completed 2/5 elements (Structures) from the requirements
 
 struct Player{
     char name[50];
     char symbol;
 };
 
+// creating global variables for player 1 and player 2
 struct Player Player1, Player2;
 
 // Player1.symbol = 'x';
@@ -65,7 +67,7 @@ struct Player Player1, Player2;
 // const char Player2Symbol = 'o';
 
 
-// creating variable to hold the winner and set it to 0
+// creating global variable to hold the winner and reset it to 0
 int winner = 0;
 
 // using array to hold the player names
@@ -157,6 +159,7 @@ char checkWin()
 
 int checkFreeSpace(int* freeSpace)
 {
+
     *freeSpace = 9;
 
     for(int i = 0; i < 3; i++)
@@ -200,17 +203,25 @@ void printWinner(int freeSpace)
 
 void saveWinner()
 {
-    FILE *FILE; // creating a pointer
-    FILE = fopen("leaderboard.txt", "a"); // opening the file in append mode or create one if file does not exist
+
+    // creating a pointer
+    // completed 4/5 elements (Pointers) from the requirements
+    FILE *FILE;
+
+
+    // completed 5/5 elements (File) from the requirements
+    // opening the file in append mode or create one if file does not exist
+    FILE = fopen("leaderboard.txt", "a"); 
 
     if (winner == 1)
     {
         fprintf(FILE,"%s\n",Player1.name);
     }else if (winner == 2)
     {
-        fprintf(FILE,"%s\n",Player1.name);
-    }else{
-        
+        fprintf(FILE,"%s\n",Player2.name);
+    }else if (winner == 3)
+    {
+        fprintf(FILE,"%s and %s tied!\n",Player1.name, Player2.name);
     }
 
     fclose(FILE); // closing the file to prevent memory leak
@@ -279,17 +290,24 @@ int main()
     int main_menu_choice;
     int freeSpace;
 
-    // Main Menu
-    printf("\nWelcome to 3x3 Tic-Tac-Toe Minigame!\n");
-    printf("Created by: @KahHeng0401\n");
-    printf("            @MultiDulcetia\n");
-    printf("            @riceo180\n");
-    printf("            @ygjiaa\n");
+    
 
     // do loop to keep looping until user chooses to exit
     do
         {
         // Main Menu Select
+
+
+
+        system("cls"); // clearing terminal to prevent clutter
+
+        // Main Menu
+        printf("Welcome to 3x3 Tic-Tac-Toe Minigame!\n");
+        printf("Created by: @KahHeng0401\n");
+        printf("            @MultiDulcetia\n");
+        printf("            @riceo180\n");
+        printf("            @ygjiaa\n");
+
         printf("\nPlease select an option:\n");
         printf("1. Start Game\n");
         printf("2. View Leaderboard\n");
@@ -327,9 +345,9 @@ int main()
                     printf("It's %s's turn", Player1.name);
                     player1Move();
                     printBoard();
-                    // freeSpace = checkFreeSpace(&freeSpace);
+                    checkFreeSpace(&freeSpace);
                     checkWin();
-                    if (winner != 0)
+                    if (winner != 0 || freeSpace == 0)
                     {
                         break;
                     }
@@ -338,20 +356,30 @@ int main()
                     printf("It's %s's turn", Player2.name);
                     player2Move();
                     printBoard();
-                    // freeSpace = checkFreeSpace(&freeSpace);
+                    checkFreeSpace(&freeSpace);
                     checkWin();
-                    if (winner != 0)
+                    if (winner != 0 || freeSpace == 0)
                     {
                         break;
                     }
-                } while (freeSpace != 0 || checkWin() != 0 || winner != 0);
+                } while(1);
+                // } while (freeSpace != 0 && checkWin() == 0 && winner == 0);
 
             // printing winner
             printWinner(winner);
 
             // saving winner to leaderboard
-            printf("\nSaving winner to leaderboard...\n");
-            saveWinner();
+            if (winner == 1 || winner == 2)
+            {
+                printf("\nSaving winner to leaderboard...\n");
+                saveWinner();
+            }else{
+                printf("\nSaving draw to leaderboard...\n");
+                saveWinner();
+            }
+            
+            printf("Thanks for playing!\n");
+            printf("Returning to main menu...\n\n");
 
             // resetting winner
             winner = 0;
@@ -411,8 +439,18 @@ int main()
         }
         else if (main_menu_choice == 3)
         {
-            printf("\nThank you for playing!\n");
+            
+            system("cls"); // clearing terminal to prevent clutter
+
+            printf("Thank you for playing!\n");
+            printf("Exiting in 3 seconds...\n");
+            Sleep(1000);
             printf("Exiting in 2 seconds...\n");
+            Sleep(1000);
+            printf("Exiting in 1 seconds...\n");
+            Sleep(1000);
+            
+            
             break; // break from do loop to prevent it from looping again
         }
         else
@@ -433,7 +471,9 @@ int main()
 
 
 
-    // pause for 5 sec before closing
-    Sleep(2000);
+    // pause for 3 sec before closing
+    // Sleep(3000);
     return 0;
 }
+
+
