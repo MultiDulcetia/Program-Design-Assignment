@@ -29,6 +29,10 @@ You have to apply at least 5 elements in your program. Elements that you can app
 // Defining the size of the board which is 3x3
 #define SIZE 3
 
+// Defining the colour for the printf thank you statment later
+#define BLUE "\e[0;34m"
+#define RESET_COLOR "\e[m"
+
 // Creating an array to hold the board
 // Completed 1/5 elements (Array) from the requirements
 char board[3][3];
@@ -503,22 +507,19 @@ int main()
             Sleep(1000); // pausing the terminal for 1 sec
             system("cls"); // clearing terminal to make it look dynamic
 
-            printf("          _ ._  _ , _ ._\n");
-            Sleep(30); // slowly print the explosion
-            printf("        (_ ' ( `  )_  .__)\n");
-            Sleep(30); // slowly print the explosion
-            printf("      ( (  (    )   `)  ) _)\n");
-            Sleep(30); // slowly print the explosion
-            printf("     (__ (_   (_ . _) _) ,__)\n");
-            Sleep(30); // slowly print the explosion
-            printf("         `~~`\\ ' . /`~~`\n");
-            Sleep(30); // slowly print the explosion
-            printf("              ;   ;\n");
-            Sleep(30); // slowly print the explosion
-            printf("              /   \\ \n");
-            Sleep(30); // slowly print the explosion
-            printf("_____________/_ __ \\_____________\n\n");
-            Sleep(30); // slowly print the explosion
+            
+            printf(BLUE".___________. __    __       ___      .__   __.  __  ___    ____    ____  ______    __    __  ");
+            Sleep(300); // pausing the terminal for 0.5 sec
+            printf("\n|           ||  |  |  |     /   \\     |  \\ |  | |  |/  /    \\   \\  /   / /  __  \\  |  |  |  | ");
+            Sleep(300); // pausing the terminal for 0.5 sec
+            printf("\n`---|  |----`|  |__|  |    /  ^  \\    |   \\|  | |  '  /      \\   \\/   / |  |  |  | |  |  |  | ");
+            Sleep(300); // pausing the terminal for 0.5 sec
+            printf("\n    |  |     |   __   |   /  /_\\  \\   |  . `  | |    <        \\_    _/  |  |  |  | |  |  |  | ");
+            Sleep(300); // pausing the terminal for 0.5 sec
+            printf("\n    |  |     |  |  |  |  /  _____  \\  |  |\\   | |  .  \\         |  |    |  `--'  | |  `--'  | ");
+            Sleep(300); // pausing the terminal for 0.5 sec
+            printf("\n    |__|     |__|  |__| /__/     \\__\\ |__| \\__| |__|\\__\\        |__|     \\______/   \\______/  "RESET_COLOR);
+            
 
             Sleep(500); // show explosion for 0.5 sec
             system("cls"); // clearing terminal to make it look dynamic
