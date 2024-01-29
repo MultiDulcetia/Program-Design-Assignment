@@ -153,7 +153,7 @@ int checkFreeSpace(int* freeSpace)
     }
 
     // if there's no freespace left, set winner to 3 which means that it's a draw
-    if (freeSpace == 0)
+    if (*freeSpace == 0)
     {
         winner = 3;
     }
@@ -173,7 +173,7 @@ void printWinner(int freeSpace)
     }else if (winner == 3) // if winner is 3 = draw
     {
         printf("Aww, unfortunately it's a draw!\n");
-        printf("Nice try,%s and %s!\n",Player1,Player2); 
+        printf("Nice try, %s and %s!\n",Player1.name,Player2.name); 
     }
     
 }
