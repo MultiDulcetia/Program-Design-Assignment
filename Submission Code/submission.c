@@ -125,16 +125,16 @@ char checkWin()
     //check diagonals
     if ((board[0][0] == board[1][1] && board[1][1] == board[2][2]) || 
     (board[0][2] == board[1][1] && board[1][1] == board[2][0]))
-{
+    {
     if (board[1][1] == Player1.symbol)
-    {
-        winner = 1;
-    }
+        {
+            winner = 1;
+        }
     else if (board[1][1] == Player2.symbol)
-    {
-        winner = 2;
+        {
+            winner = 2;
+        }
     }
-}
     return ' ';
 }
 
